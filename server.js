@@ -3,7 +3,7 @@ const app = express() //declaramos una variable app donde se guarda el producto 
 const hbs = require('hbs');
 require('./hbs/helpers');
 
- 
+const port = process.env.PORT || 3000;
 //middleware ES UN CALLBACK QUE SE EJECUTARA SIEMPRE SIN IMPORTAAAR QUE URL SEA REQUERIDA
 app.use(express.static(__dirname + '/public'));//instanciamos la libreria express con el metodo use para decir que ocupe los archivos que se encuentran el la carpeta public
 //__dirname completa la ruta absoluta para la carpeta public
@@ -30,13 +30,12 @@ app.get('/', (req, res) => {
 app.get('/about', (req, res) => {
 
  	res.render('about',{
- 		anio: new Date().getFullYear()
  	});
 
 });
 
 
 
-app.listen(3000, () => {
-	console.log('Escuchando en el puerto 3000');
+app.listen(port, () => {
+	console.log(`Escuchando en el puerto ${port}`);
 });
